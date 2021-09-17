@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <template id="asset_frontend" name="website assets for frontend" inherit_id="website.assets_frontend">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/property_website_ee/static/lib/jquery.ui/jquery-ui.js"/>
+            <link rel="stylesheet" href="/property_website_ee/static/lib/jquery.ui/jquery-ui.css"/>
+            <link rel="stylesheet" href="/property_website_ee/static/src/css/style.css"/>
+            <link rel="stylesheet" href="/property_website_ee/static/src/css/gallery-grid.css"/>
+            <link rel="stylesheet" href="/property_website_ee/static/src/css/card.css"/>
+            <t t-set="google_maps_api_key" t-value="request.env['ir.config_parameter'].sudo().get_param('google.api_key_geocode')"/>
+            <t t-if="google_maps_api_key">
+                <script t-attf-src="https://maps.googleapis.com/maps/api/js?key=#{google_maps_api_key}&amp;libraries=places"/>
+            </t>
+            <script type="text/javascript" src="/property_website_ee/static/src/js/google_map_script.js"/>
+            <script type="text/javascript" src="/property_website_ee/static/src/js/homepage_search.js"/>
+            <script type="text/javascript" src="/property_website_ee/static/src/js/property_rpc.js"/>
+        </xpath>
+    </template>
+
+</odoo>

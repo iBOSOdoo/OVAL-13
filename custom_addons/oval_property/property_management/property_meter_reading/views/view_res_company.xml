@@ -1,0 +1,15 @@
+<!-- Inherit view of res company -->
+<odoo>
+	<record id="inherited_res_company_form" model="ir.ui.view">
+        <field name="name">res.company.form</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="base.view_company_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='favicon']" position="after">
+                <field name="total_cnsm_id" domain="[('cnsm_type', '=', 'water')]"/>
+                <field name="cnsm_total_id" domain="[('cnsm_type', '=', 'borehole')]"/>
+                <field name="electricity_id" domain="[('cnsm_type', '=', 'electricity')]"/>
+            </xpath>
+        </field>
+    </record>        	
+</odoo>

@@ -1,0 +1,252 @@
+<!-- Inherit Template of invoice document -->
+<odoo>
+  <data>
+    <template id="report_watermeter_bill" inherit_id="account.report_invoice_document">
+            <xpath expr="//div[hasclass('page')]" position="inside"> 
+             <div class="page">       
+        <p style="page-break-after:always;"></p>
+        <!--Invoice Calculation For Electricity Meter -->
+           <div class="col-6" t-if="o.is_ele_bill">
+             <div class="page">  
+             </div>
+              <table class = "table-condensed">
+                <tr>
+                  <center><b>Consumption Data</b></center>
+                </tr>
+              </table>
+              <div>      
+                    <table  class="table table-condensed" width="160%" >
+                       <thead>
+                        <tr >
+                          <t t-set="colspan" t-value="6"/>
+                          <th name="th_meter_no" width="20%" class="text-left"><span>Meter No</span></th>
+                          <th name="th_open_reading" width="20%" class="text-left"><span>Opening Reading</span></th>
+                          <th name="th_closing_reading" width="20%"  class="text-left"><span>Closing Reading</span></th>
+                          <th name="th_cnsmptn" width="20%"  class="text-left"><span>Consumption</span></th>
+                          <th name="th_billing_concept" width="20%" class="text-left"><span>Billing Concept</span></th>
+                          <th name="th_amount" width="20%" class="text-right"><span>Amount</span></th>
+                          <th name="th_vat" width="20%" class="text-right"><span>Vat%</span></th>
+                          <th name="th_net_amount" width="20%" class="text-right"><span>Net Amount</span></th>
+                        </tr>
+                        </thead>
+                        <tbody class="invoice_tbody">
+                            <tr >
+                               <!-- Calculation meter no's column -->
+                              <td style="padding:5px;" class="text-left th_meter_no"><span t-field="o.tenancy_id.emeter"/></td>
+                               <!-- Calculation Opening Reading's column -->
+                              <td style="padding:5px;" class="text-left th_open_reading">
+                                <span t-field="o.tenancy_id.eop_date"/>
+                              </td>
+                               <!-- Calculation Closing Reading's column -->
+                              <td style="padding:5px;" class="text-left th_closing_reading">
+                                <span t-field="o.tenancy_id.ecl_date"/>
+                              </td>
+                              <!-- Calculation Consumption's column -->
+                              <td style="padding:5px;" class="text-left th_cnsmptn">
+                                <span t-field="o.tenancy_id.total_electric_cnsm"/>
+                              </td>
+                              <!-- Calculation Billing Concept's column -->
+                              <td style="padding:5px;" class="text-left th_billing_concept">
+                                <span></span>
+                              </td>
+                              <!-- Calculation Amount's column -->
+                              <td style="padding:5px;" class="text-left th_amount">
+                                <span t-field="o.invoice_line_ids.price_unit"/>
+                              </td> 
+                              <!-- Calculation Vat's column -->
+                              <td style="padding:5px;" class="text-left th_vat">
+                                <span t-field="o.invoice_line_ids.tax_ids"/>
+                              </td>
+                              <!-- Calculation Net Amount's column -->
+                              <td style="padding:5px;" class="text-left th_net_amount">
+                                <span t-field="o.amount_total"/>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+<!--Invoice Calculation For Water Meter -->
+          <div class="col-6" t-if="o.is_water_bill">
+          <div class="page">
+            </div><br></br>
+            <table class = "table-condensed">
+              <tr>
+                <center><b>Total Consumption Calculation</b></center>
+              </tr>
+            </table>
+                    <div> 
+                       <table width="200%">
+                          <thead>
+                            <!-- Calculation Table -->
+                            <tr>
+                              <t t-set="colspan" t-value="6"/>
+                              <th name="th_date" width="25%" class="text-left"><span>Date</span></th>
+                              <th name="th_reference" width="25%" class="text-left"><span>Reference</span></th>
+                              <th name="th_details" width="100%" class="text-left"><span>Details</span></th>
+                              <th name="th_amount" width="50%" class="text-right"><span>Amount</span></th>
+                            </tr>
+                          </thead>
+                              <tbody class="invoice_tbody">
+                                <!-- Calculation Date's column -->
+                                <tr>
+                                <td name="th_date" class="text-left"><span t-field="o.tenancy_id.date_start"/></td>
+                                <!-- Calculation Reference's column -->
+                                <td class="text-left th_reference">
+                                <span></span></td>                     
+                                <!-- Calculation Detail's column -->
+                                <td class="text-left th_details">
+                                  <span class="text-center">Meter Rent</span><br></br>
+                                  <span class="text-left" t-field="o.tenancy_id.wop_date"/>
+                                  <strong>-</strong> 
+                                  <span class="text-left" t-field="o.tenancy_id.wcl_date"/>
+                                  <span>Water Consumption</span><br></br>
+                                  <span>Current Reading-</span>
+                                  <span class="text-left" t-field="o.tenancy_id.wop_date"/><br></br>
+                                  <span>Previous Reading</span>
+                                  <span class="text-left" t-field="o.tenancy_id.wcl_date"/><br></br>
+                                  <strong>Total Consumption</strong><br></br><br></br>
+                                  <span>Total consumption-</span>
+                                  <span>Commercial meter</span>
+                                  <span class="text-center" width="20%" t-field="o.tenancy_id.company_id.cnsm_total_id.percentage"/><br></br>
+                                  <span>Total consumption-</span>
+                                  <span>Borehole meter</span>
+                                  <span class="text-center" width="20%" t-field="o.tenancy_id.company_id.total_cnsm_id.percentage"/><br></br><br></br>
+                                  <table name="table_normal_bill" width="100%" class="table-condensed">
+                                    <tr>
+                                      <th name="th_normal_bill" width="55%"><span>Normal water bill</span></th>
+                                      <th name="th_units"  width="25%"><span>Units</span> </th>
+                                      <th name="th_price" class="text-left" width="20%"><span>Price</span></th>
+                                    </tr>
+                                    <tr>
+                                      <t t-foreach="o.tenancy_id.company_id.total_cnsm_id.cnsm_unit_ids" t-as="water">
+                                        <tr>
+                                          <td class="th_normal_bill">
+                                            <span class="text-left" t-field="water.name"/>
+                                            <span class="text-left" t-field="water.cnsm_unit"/><br></br>
+                                          </td>
+                                          <td class="text-left th_units">
+                                            <t t-if="water.cnsm_unit &gt; o.tenancy_id.water_percentage and water.max_unit &lt; o.tenancy_id.water_percentage">
+                                                <span t-field="o.tenancy_id.water_percentage" t-set="total"/>
+                                            </t>                                      
+                                          </td>
+                                          <td class="text-left th_price">
+                                            <span t-field="water.cnsm_rate"/>
+                                          </td>
+                                          <t t-set="normal_unit_price" t-value="water.filtered(lambda r: r.cnsm_unit &gt; o.tenancy_id.water_percentage and r.max_unit &lt; o.tenancy_id.water_percentage)"/>
+                                            <t t-set="normal_unit_price_total" t-value="normal_unit_price.cnsm_rate * o.tenancy_id.water_percentage"/>
+                                            <t t-if="normal_unit_price_total != 0">
+                                                <td class="text-right">
+                                                    <span t-esc="normal_unit_price_total"/>
+                                                </td>
+                                            </t>
+                                        </tr> 
+                                      </t>
+                                    </tr>
+                                  </table>
+                                  <table name="table_sewer_cost" class="table-condensed">
+                                    <tr>
+                                      <th name="th_sewer_cost"><span>Sewer Cost</span>
+                                        <span class="text-left" t-field="o.tenancy_id.company_id.total_cnsm_id.sewer_cost"/>
+                                        <span>%Water Cost</span><br></br>
+                                        <span>Meter Rent</span><br></br>
+                                      </th>
+                                    </tr>
+                                  </table>
+                                  <table  width="100%" name="table_normal" class="table-condensed">
+                                    <tr>
+                                      <th name="th_normal" width="55%"><span>Borehole</span></th>
+                                      <th name="th_unit"  width="25%"><span>Units</span> </th>
+                                      <th name="th_pric" class="text-left" width="20%"><span>Price</span></th>
+                                    </tr>
+                                    <tr>
+                                      <t t-foreach="o.tenancy_id.company_id.cnsm_total_id.cnsm_unit_ids" t-as="borehole">
+                                        <tr>
+                                          <td class="th_normal">
+                                            <span class="text-left" t-field="borehole.name"/>
+                                            <span class="text-left" t-field="borehole.cnsm_unit"/><br></br>
+                                          </td>
+                                          <td class="text-left th_unit">
+                                             <t t-if="borehole.cnsm_unit &gt; o.tenancy_id.borehole_percentage and borehole.max_unit &lt; o.tenancy_id.borehole_percentage">
+                                                <span t-field="o.tenancy_id.borehole_percentage"/></t>
+                                          </td>
+                                            <td class="text-left th_pric">
+                                            <span t-field="borehole.cnsm_rate"/>
+                                          </td>
+                                           <t t-set="borehole_unit_price" t-value="borehole.filtered(lambda r: r.cnsm_unit &gt; o.tenancy_id.borehole_percentage and r.max_unit &lt; o.tenancy_id.borehole_percentage)"/>
+                                            <t t-set="borehole_unit_price_total" t-value="borehole_unit_price.cnsm_rate * o.tenancy_id.borehole_percentage"/>
+                                            <t t-if="borehole_unit_price_total != 0">
+                                                <td class="text-right">
+                                                    <span t-esc="borehole_unit_price_total"/>
+                                                </td>
+                                            </t>
+                                        </tr>
+                                      </t>
+                                    </tr>       
+                                  </table>
+                                  <table name="meter_rent" class="table-condensed">
+                                    <tr>
+                                      <th name="th_meter"><span>Meter Rent</span></th>
+                                    </tr>
+                                  </table>                  
+                                </td>
+                                <!-- Calculation Amount's column -->
+                                <td class="text-right th_amount"><br></br>
+                                  <span class="text-right" t-field="o.tenancy_id.wop_reading"/><br></br>
+                                  <span class="text-right" t-field="o.tenancy_id.wcl_reading"/><br></br>
+                                  <span>---------</span><br></br>
+                                  <span class="text-right"  t-field="o.tenancy_id.total_water_cnsm"/><br></br>
+                                  <span>===========</span><br></br>
+                                  <span class="text-right" t-field="o.tenancy_id.water_percentage"/><br></br>
+                                  <span class="text-right" t-field="o.tenancy_id.borehole_percentage"/><br></br>
+                                  <span></span><br></br>
+                                  <span></span><br></br>
+                                  <span></span><br></br>
+                                  <span></span><br></br>
+                                  <span></span><br></br>
+                                  <span></span><br></br>
+                                  <span></span><br></br>
+                                  <t t-foreach="o.tenancy_id.company_id.total_cnsm_id.cnsm_unit_ids" t-as="water_line">
+                                    <t t-set="normal_unit_price_sewer" t-value="water_line.filtered(lambda r: r.cnsm_unit &gt; o.tenancy_id.water_percentage and r.max_unit &lt; o.tenancy_id.water_percentage)"/>
+                                        <t t-set="normal_unit_price_sewer" t-value="normal_unit_price_sewer.cnsm_rate * o.tenancy_id.water_percentage * o.tenancy_id.company_id.total_cnsm_id.sewer_cost/100"/>
+                                            <t t-if="normal_unit_price_sewer != 0">
+                                                <span t-esc="normal_unit_price_sewer"/><br></br>
+                                            </t>
+                                  </t>
+                                  <span t-field="o.tenancy_id.company_id.total_cnsm_id.meter_rent"/><br></br>
+                                  <span></span><br></br>
+                                  <span></span><br></br>
+                                  <span></span><br></br>
+                                  <span></span><br></br>
+                                  <span></span><br></br>
+                                  <span t-field="o.tenancy_id.company_id.cnsm_total_id.meter_rent"/><br></br>
+                                  <span>--------------</span><br></br>
+                                  <table class="th_total">
+                                    <tr>
+                                      <th>Total =</th>
+                                      <th class="text-right">
+                                        <t t-foreach="o.tenancy_id.company_id" t-as="water_bill_total">
+                                          <t t-set="normal_unit_price" t-value="water_bill_total.total_cnsm_id.cnsm_unit_ids.filtered(lambda r: r.cnsm_unit &gt; o.tenancy_id.water_percentage and r.max_unit &lt; o.tenancy_id.water_percentage)"/>
+                                          <t t-set="normal_unit_price_total" t-value="normal_unit_price.cnsm_rate * o.tenancy_id.water_percentage"/>
+                                          <t t-set="normal_unit_price_sewer_total" t-value="normal_unit_price.cnsm_rate * o.tenancy_id.water_percentage * o.tenancy_id.company_id.total_cnsm_id.sewer_cost/100"/>
+                                          <t t-set="borehole_unit_price" t-value="water_bill_total.cnsm_total_id.cnsm_unit_ids.filtered(lambda r: r.cnsm_unit &gt; o.tenancy_id.borehole_percentage and r.max_unit &lt; o.tenancy_id.borehole_percentage)"/>
+                                          <t t-set="borehole_unit_price_total" t-value="borehole_unit_price.cnsm_rate * o.tenancy_id.borehole_percentage"/>
+                                          <t t-if="borehole_unit_price_total != 0 and normal_unit_price_total != 0">
+                                            <t t-set="final_total" t-value="normal_unit_price_total + borehole_unit_price_total + normal_unit_price_sewer_total + o.tenancy_id.company_id.total_cnsm_id.meter_rent + o.tenancy_id.company_id.cnsm_total_id.meter_rent"/>
+                                              <span t-esc="final_total"/>
+                                          </t>
+                                        </t>
+                                      </th>
+                                    </tr>
+                                  </table>
+                                </td>
+                                </tr>                                    
+                          </tbody>                  
+                        </table><br/>               
+                    </div>
+                </div>
+            </div>       
+        </xpath>
+    </template>
+  </data>    
+</odoo>

@@ -1,0 +1,142 @@
+<odoo>
+
+    <template id="custom_invoice" inherit_id="web.external_layout_standard">
+        <xpath expr="//div[1]/div[3]/div/div" position="after">
+            <t t-esc="company.country_id.vat_label or 'Tax ID'"/>: <span t-field="company.vat"/>
+        </xpath>
+        <xpath expr="//div[@t-attf-class='footer o_standard_footer o_company_#{company.id}_layout']" position="replace">
+            <div t-attf-class="footer o_standard_footer o_company_#{company.id}_layout">
+                <div class="text-center" style="border-top: 1px solid black;">
+                    <ul class="list-inline mb4">
+                        <li t-if="company.phone" class="list-inline-item d-inline">Phone: <span t-field="company.phone"/></li>
+                        <li t-if="company.email" class="list-inline-item d-inline">Email: <span t-field="company.email"/></li>
+                        <li t-if="company.website" class="list-inline-item d-inline">Web: <span t-field="company.website"/></li>
+                    </ul>
+                    <div name="financial_infos">
+                        <span t-field="company.report_footer"/>
+                    </div>
+                    <div t-if="report_type == 'pdf'" class="text-muted">
+                        Page: <span class="page"/> / <span class="topage"/>
+                    </div>
+                </div>
+            </div>
+        </xpath>
+    </template>
+
+    <template id="custom_account_move" inherit_id="account.report_invoice_document">
+        <xpath expr="//p[@name='payment_term']" position="after">
+            <div>
+                <!-- <table>
+                    <tr>
+                        <t t-foreach="o.company_id.partner_id.bank_ids" t-as="bank_details">
+                            <tr>
+                                <td width="150">
+                                    <span class="text-left">Bank Name:</span>
+                                </td>
+                                <td>
+                                    <span class="text-left" t-field="bank_details.bank_id.name"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="150">
+                                    <span class="text-left">Account Name:</span>
+                                </td>
+                                <td>
+                                    <span class="text-left" t-field="bank_details.acc_holder_name"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="150">
+                                    <span class="text-left">Account Number:</span>
+                                </td>
+                                <td>
+                                    <span class="text-left" t-field="bank_details.acc_number"/>
+                                </td>
+                            </tr>
+                        </t>
+                    </tr>
+                </table> -->
+                <table>
+                    <tr>
+                        <t t-foreach="o.invoice_line_ids" t-as="tenancy_bank_details">
+                            <t t-if="tenancy_bank_details.analytic_account_id.bank_account_id">
+                                <tr>
+                                    <td width="150">
+                                        <span class="text-left">Bank Name:</span>
+                                    </td>
+                                    <td>
+                                        <span class="text-left" t-field="tenancy_bank_details.analytic_account_id.bank_account_id.bank_id.name"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="150">
+                                        <span class="text-left">Account Name:</span>
+                                    </td>
+                                    <td>
+                                        <span class="text-left" t-field="tenancy_bank_details.analytic_account_id.bank_account_id.acc_holder_name"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="150">
+                                        <span class="text-left">Account Number:</span>
+                                    </td>
+                                    <td>
+                                        <span class="text-left" t-field="tenancy_bank_details.analytic_account_id.bank_account_id.acc_number"/>
+                                    </td>
+                                </tr>
+                            </t>
+                        </t>
+                    </tr>
+                </table>
+                <br/>
+                <t t-foreach="o.invoice_line_ids" t-as="invoice_line">
+                    <t t-if="invoice_line.analytic_account_id.deposit">
+                        <span class="text-left">Deposit:</span>
+                        <span class="text-left" t-field="invoice_line.analytic_account_id.deposit"/>
+                    </t>
+                </t>
+            </div>
+        </xpath>
+        <xpath expr="//t/div/div[2]" position="replace">
+            <div class="clearfix">
+                <div id="total" class="row">
+                    <div t-attf-class="#{'col-6' if report_type != 'html' else 'col-sm-7 col-md-6'} ml-auto">
+                        <table class="table table-sm" style="page-break-inside: avoid;">
+                            <tr class="border-black o_subtotal" style="">
+                                <td><strong>Subtotal</strong></td>
+                                <td class="text-right">
+                                    <span t-field="o.amount_untaxed"/>
+                                </td>
+                            </tr>
+                            <t t-foreach="o.amount_by_group" t-as="amount_by_group">
+                                <tr style="">
+                                    <t t-if="len(o.line_ids.filtered(lambda line: line.tax_line_id)) == 1 and o.amount_untaxed == amount_by_group[2]">
+                                        <td><span class="text-nowrap" t-esc="amount_by_group[0]"/></td>
+                                        <td class="text-right o_price_total">
+                                            <span class="text-nowrap" t-esc="amount_by_group[3]" />
+                                        </td>
+                                    </t>
+                                    <t t-else="">
+                                        <td>
+                                            <span>Total</span>
+                                            <span t-esc="amount_by_group[0]"/>
+                                        </td>
+                                        <td class="text-right o_price_total">
+                                            <span class="text-nowrap" t-esc="amount_by_group[3]"/>
+                                        </td>
+                                    </t>
+                                </tr>
+                            </t>
+                            <tr class="border-black o_total">
+                                <td><strong>Total</strong></td>
+                                <td class="text-right">
+                                    <span class="text-nowrap" t-field="o.amount_total"/>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </xpath>
+    </template>
+</odoo>

@@ -1,0 +1,18 @@
+<odoo>
+    <record id="mail_tenant_rent" model="mail.template">
+        <field name="name">Mail to Tenant.</field>
+        <field name="model_id" ref='property_management_ee.model_tenancy_rent_schedule'/>
+        <!-- <field name='email_from'>${object.issue_email}</field> -->
+        <!-- <field name='email_to'>${object.student_id.email}</field> -->
+        <field name="lang">${object.lang}</field>
+        <field name="subject">Rent Schedule on ${object.start_date}</field>
+        <field name="body_html">
+            <![CDATA[
+            <p> Dear ${object.tenancy_id.tenant_id.name}<br/> 
+               Your rent is scheduled on ${object.start_date}. So please pay before the due date.<br/></p>
+                From<br/>
+                ${object.tenancy_id.property_id.property_manager.name}
+            ]]>
+        </field>
+    </record>
+</odoo>

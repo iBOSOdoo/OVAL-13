@@ -1,0 +1,66 @@
+<odoo>
+    <record id="mail_maintenance_tenant_inprogress_template" model="mail.template">
+        <field name="name">Mail To Tenant Maintenance In progress.</field>
+        <field name="model_id" ref='property_maintenance_ee.model_maintenance_request'/>
+        <field name='email_from'>${object.user_id.login}</field>
+        <field name="lang">${object.lang}</field>
+        <field name="subject">Maintenance Progress for Property ${object.property_id.name}</field>
+        <field name="body_html">
+            <![CDATA[
+            <p> Dear ${object.tenant_id.name}<br/> 
+                Maintenence of ${object.property_id.name} property is in progress.<br/>
+                Which will be done by ${object.maintenance_team_id.name} team. And supervised by ${object.user_id.name}. <br/>
+                Thank You</p>
+                <br/>
+            ]]>
+        </field>
+    </record>
+    <record id="mail_maintenance_manager_inprogress_template" model="mail.template">
+        <field name="name">Mail To Manager Maintenance In progress.</field>
+        <field name="model_id" ref='property_maintenance_ee.model_maintenance_request'/>
+        <field name='email_from'>${object.user_id.login}</field>
+        <field name="lang">${object.lang}</field>
+        <field name="subject">Maintenance Progress for Property ${object.property_id.name}</field>
+        <field name="body_html">
+            <![CDATA[
+            <p> Dear ${object.property_id.property_manager.name}<br/> 
+                Maintenence of ${object.property_id.name} property is in progress.<br/>
+                Which will be done by ${object.maintenance_team_id.name} team. And supervised by ${object.user_id.name}. <br/>
+                Thank You</p>
+                <br/>
+            ]]>
+        </field>
+    </record>
+    <record id="mail_maintenance_tenant_done_template" model="mail.template">
+        <field name="name">Mail To Tenant Maintenance Is Done.</field>
+        <field name="model_id" ref='property_maintenance_ee.model_maintenance_request'/>
+        <field name='email_from'>${object.user_id.login}</field>
+        <field name="lang">${object.lang}</field>
+        <field name="subject">Maintenance Progress for Property ${object.property_id.name}</field>
+        <field name="body_html">
+            <![CDATA[
+            <p> Dear ${object.tenant_id.name}<br/> 
+                Maintenence of ${object.property_id.name} property is done.<br/>
+                Which is done by ${object.maintenance_team_id.name} team. And supervised by ${object.user_id.name}. <br/>
+                Thank You</p>
+                <br/>
+            ]]>
+        </field>
+    </record>
+    <record id="mail_maintenance_manager_done_template" model="mail.template">
+        <field name="name">Mail To Manager Maintenance Is Done.</field>
+        <field name="model_id" ref='property_maintenance_ee.model_maintenance_request'/>
+        <field name='email_from'>${object.user_id.login}</field>
+        <field name="lang">${object.lang}</field>
+        <field name="subject">Maintenance Progress for Property ${object.property_id.name}</field>
+        <field name="body_html">
+            <![CDATA[
+            <p> Dear ${object.property_id.property_manager.name}<br/> 
+                Maintenence of ${object.property_id.name} property is done.<br/>
+                Which is done by ${object.maintenance_team_id.name} team. And supervised by ${object.user_id.name}. <br/>
+                Thank You</p>
+                <br/>
+            ]]>
+        </field>
+    </record>
+</odoo>

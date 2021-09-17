@@ -1,0 +1,183 @@
+<odoo>
+<!-- Property Water Metere reading form view -->
+		<record id='water_meter_reading_view_form' model='ir.ui.view'>
+            <field name="name">water.meter.reading.form</field>
+            <field name="model">water.meter.reading</field>
+            <field name="arch" type="xml">
+                <form string="Water Metere reading">
+                    <sheet>
+                        <group col="4" colspan="4">
+                         	<field name="tenancy_id"/>
+                            <field name="property_id" required="1"/>
+                            <field name="wacc"/>
+                            <field name="wmeter" required="1"/>
+                            <field name="wop_date"/>
+                            <field name="wop_reading"/>
+                            <field name="wcl_date" />
+                            <field name="wcl_reading"/>                            
+                            <field name="remarks"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+<!-- Property Water Metere reading tree view -->
+        <record id='water_meter_reading_view_tree' model='ir.ui.view'>
+            <field name="name">water.meter.reading.tree</field>
+            <field name="model">water.meter.reading</field>
+            <field name="arch" type="xml">
+                <tree string="Water Metere Logs">
+                    <field name="date"/>
+                    <field name="property_id"/>
+                    <field name="tenancy_id"/>
+                    <field name="wacc"/>
+                    <field name="wmeter"/>
+                </tree>
+            </field>
+        </record>
+<!-- Property Water Metere reading Action -->
+    <record id='water_meter_reading_action' model='ir.actions.act_window'>
+            <field name="name">Water Meter Reading</field>
+            <field name="res_model">water.meter.reading</field>
+            <field name="view_mode">tree,form</field>
+    </record>
+    <!-- Property Electric Meter reading form view -->
+        <record id='electricity_meter_reading_view_form' model='ir.ui.view'>
+            <field name="name">electricity.meter.reading.form</field>
+            <field name="model">electricity.meter.reading</field>
+            <field name="arch" type="xml">
+                <form string="Water Metere reading">
+                    <sheet>
+                        <group col="4" colspan="4">
+                            <field name="tenancy_id" domain="[('is_property', '=', True)]"/>
+                            <field name="property_id" required="1"/>
+                            <field name="eacc" />
+                            <field name="emeter" required="1"/>
+                            <field name="eop_date" />
+                            <field name="eop_reading" />
+                            <field name="ecl_date" />
+                            <field name="ecl_reading" />
+                            <field name="remarks" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+<!-- Property Electric Metere reading tree view -->
+        <record id='electricity_meter_reading_view_tree' model='ir.ui.view'>
+            <field name="name">electricity.meter.reading.tree</field>
+            <field name="model">electricity.meter.reading</field>
+            <field name="arch" type="xml">
+                <tree string="Water Metere Logs">
+                    <field name="date" />
+                    <field name="property_id"/>
+                    <field name="tenancy_id" />
+                    <field name="eacc" />
+                    <field name="emeter" />
+                </tree>
+            </field>
+        </record>
+<!-- Property Electric Metere reading action -->
+        <record id='electricity_meter_reading_action' model='ir.actions.act_window'>
+            <field name="name">Electricity Meter Reading</field>
+            <field name="res_model">electricity.meter.reading</field>
+            <field name="view_mode">tree,form,</field>
+        </record>
+<!-- Inherite  Property Form view -->
+     <record id="inherited_view_asset_form_id" model="ir.ui.view">
+        <field name="name">account.asset.asset.form.id</field>
+        <field name="model">account.asset</field>
+        <field name="inherit_id" ref="account_asset.view_account_asset_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='nearest_place']" position="after">
+                <page name="water_electricity_reading" string="Water &amp; Electricity Meter Reading">
+                    <separator string="Water Reading" colspan="4" />
+                    <field name="water_reading_ids">
+                        <tree editable="top">
+                            <field name="property_id" invisible="1"/>
+                            <field name="wacc"/>
+                            <field name="wmeter" />
+                            <field name="wop_date" />
+                            <field name="wop_reading" />
+                            <field name="wcl_date" />
+                            <field name="wcl_reading" />
+                            <field name="tenancy_id" domain="[('is_property', '=', True)]"/>
+                            <field name="remarks" />
+                        </tree>
+                    </field>
+                    <separator string="Electricity Reading" colspan="4" />
+                    <field name="electricity_reading_ids">
+                        <tree editable="top">
+                            <field name="eacc"/>
+                            <field name="emeter" />
+                            <field name="eop_date" />
+                            <field name="eop_reading" />
+                            <field name="ecl_date" />
+                            <field name="ecl_reading" />
+                            <field name="tenancy_id" domain="[('is_property', '=', True)]"/>
+                            <field name="remarks" />
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>    
+    <!--Total Consumption form view -->
+        <record id='total_consumption_view_form' model='ir.ui.view'>
+            <field name="name">total.consumption.view.form</field>
+            <field name="model">total.consumption</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="cnsm_type"/>
+                            <field name="date" attrs="{'invisible':[('cnsm_type', '=', 'electricity')]}"/>
+                            <field name="percentage" attrs="{'invisible':[('cnsm_type', '=', 'electricity')]}"/>
+                            <field name="meter_rent" attrs="{'invisible':[('cnsm_type', '=', 'electricity')]}"/>
+                            <field name="sewer_cost" attrs="{'invisible':['|',('cnsm_type', '=', 'borehole'), ('cnsm_type', '=', 'electricity')]}"/>
+                            <field name="electricity_rate" attrs="{'invisible':['|',('cnsm_type', '=', 'borehole'), ('cnsm_type', '=', 'water')]}"/>
+                        </group>
+                        <group>
+                         <separator string="Consumption"
+                                colspan="4"/>    
+                            <field name="cnsm_unit_ids" nolabel='1' attrs="{'invisible':[('cnsm_type', '=', 'electricity')]}">
+                                <tree string='Consumption' editable="bottom">
+                                    <field name='name'/>
+                                    <field name='max_unit'/>
+                                    <field name='cnsm_unit'/>
+                                    <field name='cnsm_rate'/>
+                                </tree>
+                            </field>    
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+<!-- Total Consumption tree view -->
+        <record id='total_consumption_view_tree' model='ir.ui.view'>
+            <field name="name">total.consumption.tree</field>
+            <field name="model">total.consumption</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="cnsm_type"/>
+                </tree>
+            </field>
+        </record>
+<!--Total Consumption form view-->
+    <record id='total_consumption_action' model='ir.actions.act_window'>
+            <field name="name">Total Consumption</field>
+            <field name="res_model">total.consumption</field>
+            <field name="view_mode">tree,form</field>
+    </record> 
+<!-- Menuiteam Of total consumption-->
+    <menuitem
+        id="menu_total_consumption_main"
+        name="Consumption"
+        parent="property_management_ee.menu_configuration_main"/> 
+
+    <menuitem
+        id="menu_total_consumption_child"
+        name="Consumption Rule"
+        action="total_consumption_action"
+        parent="menu_total_consumption_main"/> -->
+</odoo>        

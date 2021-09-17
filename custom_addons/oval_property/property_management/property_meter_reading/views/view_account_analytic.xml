@@ -1,0 +1,51 @@
+<odoo>
+	<!-- Inherit view of Property Management -->
+	<record id="inherited_view_analytic_form_id" model="ir.ui.view">
+		<field name="name">inherit.analytic.view.form</field>
+		<field name="model">account.analytic.account</field>
+		<field name="inherit_id" ref="property_management_ee.property_analytic_view_form"  />
+		<field name="arch" type="xml">
+		<xpath expr="//page[@name='history']" position="after">
+			 <page name="water_electricity_reading" string="Water &amp; Electricity Meter Reading">
+				<group colspan="2" col="2">
+					<field name="status_we"/>
+				</group>
+				<group col="4" colspan="4" string="Water Reading">
+					<group col="4" colspan="4">
+							<field name="wacc" readonly="1"/>
+							<field name="wmeter" readonly="1"/>
+							<field name="wop_date"/>
+							<field name="wop_reading"/>
+							<field name="wcl_date"/>
+							<field name="wcl_reading"/>
+							<field name="wremarks"/>
+							<field name="total_water_cnsm"/>
+							<field name="get_whide" invisible="1"/>
+					</group>
+					<group col='4' colspan='4'>
+					<button class="oe_edit_only" name="get_water_reading" confirm="Are you sure you want to get older water readings ?" string="Get Reading" type="object" icon="fa-asterisk"/>
+					<button class="oe_edit_only" name="create_invoice_water" string="Get Water Bill" type="object" icon="fa-asterisk"/>
+				</group>
+				</group>
+				<group col="4" colspan="4" string="Electricity Reading">
+					<group col="4" colspan="4">
+						<field name="eacc" readonly="1"/>
+						<field name="emeter" readonly="1"/>
+						<field name="eop_date"/>
+						<field name="eop_reading"/>
+						<field name="ecl_date"/>
+						<field name="ecl_reading"/>
+						<field name="eremarks"/>
+						<field name="total_electric_cnsm"/>
+						<field name="get_ehide" invisible="1"/>
+					</group>
+					<group col='4' colspan='4'>
+					<button name="get_electricity_reading" string="Get Reading" type="object" icon="fa-asterisk" class="oe_edit_only" confirm="Are you sure you want to get older electricity readings ?"/>
+					<button class="oe_edit_only" name="create_invoice_electric" string="Get Electricity Bill" type="object" icon="fa-asterisk"/>
+				</group>
+				</group>
+			</page>	
+		</xpath>
+	</field>
+	</record>
+</odoo>

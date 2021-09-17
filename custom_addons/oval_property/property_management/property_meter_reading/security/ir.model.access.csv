@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_water_meter_reading,access_water_meter_reading,model_water_meter_reading,base.group_user,1,0,0,0
+access_electricity_meter_reading,access_electricity_meter_reading,model_electricity_meter_reading,base.group_user,1,0,0,0
+access_total_consumption,access_total_consumption,model_total_consumption,base.group_user,1,0,0,0
+access_consumption_unit,access_consumption_unit,model_consumption_unit,base.group_user,1,0,0,0
+access_water_meter_reading_admin,access_water_meter_reading_admin,model_water_meter_reading,,1,1,1,1
+access_electricity_meter_reading_admin,access_electricity_meter_reading_admin,model_electricity_meter_reading,,1,1,1,1
+access_total_consumption_admin,access_total_consumption_admin,model_total_consumption,,1,1,1,1
+access_consumption_unit_admin,access_consumption_unit_admin,model_consumption_unit,,1,1,1,1

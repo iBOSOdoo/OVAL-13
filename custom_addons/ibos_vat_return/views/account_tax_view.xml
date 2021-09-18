@@ -1,0 +1,16 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="invoice_	account_view_tax_form_inherit_vat">
+            <field name="model">account.tax</field>
+            <field name="name">account.move.tax.form</field>
+            <field name="inherit_id" ref="account.view_tax_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form/sheet/notebook/page[1]" position="inside">
+                    <group>
+                        <field name="sheet_type"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

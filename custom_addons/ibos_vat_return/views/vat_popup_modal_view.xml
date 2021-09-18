@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="vat_purchase_wizard_form" model="ir.ui.view">
+        <field name="name">vat.purchase.wizard.form</field>
+        <field name="model">vat.purchase.export.wizard</field>
+        <field name="arch" type="xml">
+            <form string="VAT Purchase Return">
+                <group>
+                    <group>
+                        <field name="vat_type"/>
+                        <field name="from_date"/>
+                        <field name="to_date"/>
+                    </group>
+                    <group></group>
+                </group>
+                <footer>
+                    <button name="kra_purchase_vat_import_csv" string="Generate Sheet To Import" type="object"
+                            class="oe_highlight"/>
+                    or
+                    <button special="cancel" string="Cancel" class="oe_link"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="vat_purchase_wizard_action" model="ir.actions.act_window">
+        <field name="name">VAT Purchase Return</field>
+        <field name="res_model">vat.purchase.export.wizard</field>
+        <!--        <field name="view_type">form</field>-->
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="vat_purchase_wizard_form"/>
+        <field name="target">new</field>
+    </record>
+
+    <record id="vat_sale_wizard_form" model="ir.ui.view">
+        <field name="name">vat.sale.wizard.form</field>
+        <field name="model">vat.sale.export.wizard</field>
+        <field name="arch" type="xml">
+            <form string="VAT Sale Return">
+                <group>
+                    <group>
+                        <field name="description"/>
+                        <field name="vat_type"/>
+                        <field name="from_date"/>
+                        <field name="to_date"/>
+                    </group>
+                    <group></group>
+                </group>
+                <footer>
+                    <button name="kra_sales_vat_import_csv" string="Generate Sheet To Import" type="object"
+                            class="oe_highlight"/>
+                    or
+                    <button special="cancel" string="Cancel" class="oe_link"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="vat_sale_wizard_action" model="ir.actions.act_window">
+        <field name="name">VAT Sale Return</field>
+        <field name="res_model">vat.sale.export.wizard</field>
+        <!--        <field name="view_type">form</field>-->
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="vat_sale_wizard_form"/>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="menu_kra_vat" name="VAT Returns" parent="account.menu_finance_reports" sequence="8"/>
+    <menuitem id="menu_kra_vat_purchase" name="Purchases" parent="ibos_vat_return.menu_kra_vat"
+              action="vat_purchase_wizard_action" sequence="2"/>
+    <menuitem id="menu_kra_vat_sales" name="Sales" parent="ibos_vat_return.menu_kra_vat" action="vat_sale_wizard_action"
+              sequence="1"/>
+</odoo>

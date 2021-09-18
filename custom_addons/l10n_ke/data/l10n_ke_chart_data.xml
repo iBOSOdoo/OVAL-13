@@ -1,0 +1,781 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data noupdate="1">
+
+        <record id="transfer_account_id" model="account.account.template">
+            <field name="code">100800</field>
+            <field name="name">Transfer Account</field>
+            <field name="reconcile" eval="True"/>
+            <field name="user_type_id" ref="account.data_account_type_current_assets"/>
+        </record>
+
+        <record id="kenyan_chart_template_standard" model="account.chart.template">
+            <field name="name">Kenya Accounts Chart</field>
+            <field name="bank_account_code_prefix">1002</field>
+            <field name="cash_account_code_prefix">1001</field>
+            <field name="transfer_account_code_prefix">1008</field>
+            <field name="code_digits">6</field>
+            <field name="currency_id" ref="base.KES"/>
+            <field name="transfer_account_id" ref="transfer_account_id"/>
+        </record>
+
+        <record id="transfer_account_id" model="account.account.template">
+            <field name="chart_template_id" ref="kenyan_chart_template_standard"/>
+        </record>
+
+        <record forcecreate="1" model="account.account.template" id="p100000">
+            <field name="name">Land and Buildings</field>
+            <field name="code">100000</field>
+            <field name="user_type_id" ref="account.data_account_type_fixed_assets"/>
+            <field name="reconcile" eval="False"/>
+            <field name="chart_template_id" ref="kenyan_chart_template_standard"/>
+        </record>
+
+        <record forcecreate="1" model="account.account.template" id="p100001">
+            <field name="name"><![CDATA[Land and Buildings - Acc. Dep.]]></field>
+            <field name="code">100001</field>
+            <field name="user_type_id" ref="account.data_account_type_fixed_assets"/>
+            <field name="reconcile" eval="False"/>
+            <field name="chart_template_id" ref="kenyan_chart_template_standard"/>
+        </record>
+
+        <record forcecreate="1" model="account.account.template" id="p100010">
+            <field name="name">Leasehold Property</field>
+            <field name="code">100010</field>
+            <field name="user_type_id" ref="account.data_account_type_fixed_assets"/>
+            <field name="reconcile" eval="False"/>
+            <field name="chart_template_id" ref="kenyan_chart_template_standard"/>
+        </record>
+
+        <record forcecreate="1" model="account.account.template" id="p100011">
+            <field name="name"><![CDATA[Leasehold Property - Acc. Dep.]]></field>
+            <field name="code">100011</field>
+            <field name="user_type_id" ref="account.data_account_type_fixed_assets"/>
+            <field name="reconcile" eval="False"/>
+            <field name="chart_template_id" ref="kenyan_chart_template_standard"/>
+        </record>
+
+        <record forcecreate="1" model="account.account.template" id="p100020">
+            <field name="name">Plant and Machinery</field>
+            <field name="code">100020</field>
+            <field name="user_type_id" ref="account.data_account_type_fixed_assets"/>
+            <field name="reconcile" eval="False"/>
+            <field name="chart_template_id" ref="kenyan_chart_template_standard"/>
+        </record>
+
+        <record forcecreate="1" model="account.account.template" id="p100021">
+            <field name="name"><![CDATA[Plant and Machinery - Acc. Dep.]]></field>
+            <field name="code">100021</field>
+            <field name="user_type_id" ref="account.data_account_type_fixed_assets"/>
+            <field name="reconcile" eval="False"/>
+            <field name="chart_template_id" ref="kenyan_chart_template_standard"/>
+        </record>
+
+        <record forcecreate="1" model="account.account.template" id="p100030">
+            <field name="name">Motor Vehicles</field>
+            <field name="code">100030</field>
+            <field name="user_type_id" ref="account.data_account_type_fixed_assets"/>
+            <field name="reconcile" eval="False"/>
+            <field name="chart_template_id" ref="kenyan_chart_template_standard"/>
+        </record>
+
+        <record forcecreate="1" model="account.account.template" id="p100031">
+            <field name="name"><![CDATA[Motor Vehicles - Acc. Dep.]]></field>
+            <field name="code">100031</field>
+            <field name="user_type_id" ref="account.data_account_type_fixed_assets"/>
+            <field name="reconcile" eval="False"/>
+            <field name="chart_template_id" ref="kenyan_chart_template_standard"/>
+        </record>
+
+        <record forcecreate="1" model="account.account.template" id="p100040">
+            <field name="name">Lorries and Tractors</field>
+            <field name="code">100040</field>
+            <field name="user_type_id" ref="account.data_account_type_fixed_assets"/>
+            <field name="reconcile" eval="False"/>
+            <field name="chart_template_id" ref="kenyan_chart_template_standard"/>
+        </record>
+
+        <record forcecreate="1" model="account.account.template" id="p100041">
+            <field name="name"><![CDATA[Lorries and Tractors - Acc. Dep.]]></field>
+            <field name="code">100041</field>
+            <field name="user_type_id" ref="account.data_account_type_fixed_assets"/>
+            <field name="reconcile" eval="False"/>
+            <field name="chart_template_id" ref="kenyan_chart_template_standard"/>
+        </record>
+
+        <record forcecreate="1" model="account.account.template" id="p100050">
+            <field name="name">Furniture and Fitting</field>
+            <field name="code">100050</field>
+            <field name="user_type_id" ref="account.data_account_type_fixed_assets"/>
+            <field name="reconcile" eval="False"/>
+            <field name="chart_template_id" ref="kenyan_chart_template_standard"/>
+        </record>
+
+        <record forcecreate="1" model="account.account.template" id="p100051">
+            <field name="name"><![CDATA[Furniture and Fitting - Acc. Dep.]]></field>
+            <field name="code">100051</field>
+            <field name="user_type_id" ref="account.data_account_type_fixed_assets"/>
+            <field name="reconcile" eval="False"/>
+            <field name="chart_template_id" ref="kenyan_chart_template_standard"/>
+        </record>
+
+        <record forcecreate="1" model="account.account.template" id="p100060">
+            <field name="name">Computers</field>
+            <field name="code">100060</field>
+            <field name="user_type_id" ref="account.data_account_type_fixed_assets"/>
+            <field name="reconcile" eval="False"/>
+            <field name="chart_template_id" ref="kenyan_chart_template_standard"/>
+        </record>
+
+        <record forcecreate="1" model="account.account.template" id="p100061">
+            <field name="name"><![CDATA[Computers - Acc. Dep.]]></field>
+            <field name="code">100061</field>
+            <field name="user_type_id" ref="account.data_account_type_fixed_assets"/>
+            <field name="reconcile" eval="False"/>
+            <field name="chart_template_id" ref="kenyan_chart_template_standard"/>
+        </record>
+
+        <record forcecreate="1" model="account.account.template" id="p101000">
+            <field name="name">Current Assets</field>
+            <field name="code">101000</field>
+            <field name="user_type_id" ref="account.data_account_type_current_assets"/>
+            <field name="reconcile" eval="False"/>
+            <field name="chart_template_id" ref="kenyan_chart_template_standard"/>
+        </record>
+
+        <record forcecreate="1" model="account.account.template" id="p101005">
+            <field name="name">Work In Progress</field>
+            <field name="code">101005</field>
+            <field name="user_type_id" ref="account.data_account_type_current_assets"/>
+            <field name="reconcile" eval="False"/>
+            <field name="chart_template_id" ref="kenyan_chart_template_standard"/>
+        </record>
+
+        <record forcecreate="1" model="account.account.template" id="p101110">
+            <field name="name">Stock Valuation Account</field>
+            <field name="code">101110</field>
+            <field name="user_type_id" ref="account.data_account_type_current_assets"/>
+            <field name="reconcile" eval="False"/>
+            <field name="chart_template_id" ref="kenyan_chart_template_standard"/>
+        </record>
+
+        <record forcecreate="1" model="account.account.template" id="p101120">
+            <field name="name">Stock Interim Account (Received)</field>
+            <field name="code">101120</field>
+            <field name="user_type_id" ref="account.data_account_type_current_assets"/>
+            <field name="reconcile" eval="False"/>
+            <field name="chart_template_id" ref="kenyan_chart_template_standard"/>
+        </record>
+
+        <record forcecreate="1" model="account.account.template" id="p101130">
+            <field name="name">Stock Interim Account (Delivered)</field>
+            <field name="code">101130</field>
+            <field name="user_type_id" ref="account.data_account_type_current_assets"/>
+            <field name="reconcile" eval="False"/>
+            <field name="chart_template_id" ref="kenyan_chart_template_standard"/>
+        </record>
+
+        <record forcecreate="1" model="account.account.template" id="p101140">
+            <field name="name">Deferred Tax Asset</field>
+            <field name="code">101140</field>
+            <field name="user_type_id" ref="account.data_account_type_current_assets"/>
+            <field name="reconcile" eval="False"/>
+            <field name="chart_template_id" ref="kenyan_chart_template_standard"/>
+        </record>
+
+        <record forcecreate="1" model="account.account.template" id="p101150">
+            <field name="name">Undeposited Funds</field>
+            <field name="code">101150</field>
+            <field name="user_type_id" ref="account.data_account_type_current_assets"/>
+            <field name="reconcile" eval="False"/>
+            <field name="chart_template_id" ref="kenyan_chart_template_standard"/>
+        </record>
+
+        <record forcecreate="1" model="account.account.template" id="p101140">
+            <field name="name">PAYE Payable</field>
+            <field name="code">111050</field>
+            <field name="user_type_id" ref="account.data_account_type_current_liabilities"/>
+            <field name="reconcile" eval="False"/>
+            <field name="chart_template_id" ref="kenyan_chart_template_standard"/>
+        </record>
+
+        <record forcecreate="1" model="account.account.template" id="p101150">
+            <field name="name">NSSF Payable</field>
+            <field name="code">111060</field>
+            <field name="user_type_id" ref="account.data_account_type_current_liabilities"/>
+            <field name="reconcile" eval="False"/>
+            <field name="chart_template_id" ref="kenyan_chart_template_standard"/>
+        </record>
+
+        <record forcecreate="1" model="account.account.template" id="p101160">
+            <field name="name">NHIF Payable</field>
+            <field name="code">111070</field>
+            <field name="user_type_id" ref="account.data_account_type_current_liabilities"/>
+            <field name="reconcile" eval="False"/>
+            <field name="chart_template_id" ref="kenyan_chart_template_standard"/>
+        </record>
+
+        <record forcecreate="1" model="account.account.template" id="p101170">
+            <field name="name">Salaries and Wages Payable</field>
+            <field name="code">111080</field>
+            <field name="user_type_id" ref="account.data_account_type_current_liabilities"/>
+            <field name="reconcile" eval="False"/>
+            <field name="chart_template_id" ref="kenyan_chart_template_standard"/>
+        </record>
+
+        <record forcecreate="1" model="account.account.template" id="p111205">
+            <field name="name">Withholding Tax Payable</field>
+            <field name="code">111205</field>
+            <field name="user_type_id" ref="account.data_account_type_current_liabilities"/>
+            <field name="reconcile" eval="False"/>
+            <field name="chart_template_id" ref="kenyan_chart_template_standard"/>
+        </record>
+
+        <record forcecreate="1" model="account.account.template" id="p101200">
+            <field name="name">Account Receivable</field>
+            <field name="code">101200</field>
+            <field name="user_type_id" ref="account.data_account_type_receivable"/>
+            <field name="reconcile" eval="True"/>
+            <field name="chart_template_id" ref="kenyan_chart_template_standard"/>
+        </record>
+
+        <record forcecreate="1" model="account.account.template" id="p101300">
+            <field name="name">Taxation</field>
+            <field name="code">101300</field>
+            <field name="user_type_id" ref="account.data_account_type_current_assets"/>
+            <field name="reconcile" eval="False"/>
+            <field name="chart_template_id" ref="kenyan_chart_template_standard"/>
+        </record>
+
+        <record forcecreate="1" model="account.account.template" id="p100301">
+            <field name="name">Petty Cash</field>
+            <field name="code">100301</field>
+            <field name="user_type_id" ref="account.data_account_type_liquidity"/>
+            <field name="reconcile" eval="False"/>
+            <field name="chart_template_id" ref="kenyan_chart_template_standard"/>
+        </record>
+
+        <record forcecreate="1" model="account.account.template" id="p101600">
+            <field name="name">Opening Income Account</field>
+            <field name="code">101600</field>
+            <field name="user_type_id" ref="account.data_account_type_other_income"/>
+            <field name="reconcile" eval="False"/>
+            <field name="chart_template_id" ref="kenyan_chart_template_standard"/>
+        </record>
+
+        <record forcecreate="1" model="account.account.template" id="p101700">
+            <field name="name">Liquidity Transfers</field>
+            <field name="code">101700</field>
+            <field name="user_type_id" ref="account.data_account_type_current_assets"/>
+            <field name="reconcile" eval="True"/>
+            <field name="chart_template_id" ref="kenyan_chart_template_standard"/>
+        </record>
+
+        <record forcecreate="1" model="account.account.template" id="p103000">
+            <field name="name">Prepayments</field>
+            <field name="code">103000</field>
+            <field name="user_type_id" ref="account.data_account_type_prepayments"/>
+            <field name="reconcile" eval="False"/>
+            <field name="chart_template_id" ref="kenyan_chart_template_standard"/>
+        </record>
+
+        <record forcecreate="1" model="account.account.template" id="p111000">
+            <field name="name">Current Liabilities</field>
+            <field name="code">111000</field>
+            <field name="user_type_id" ref="account.data_account_type_current_liabilities"/>
+            <field name="reconcile" eval="False"/>
+            <field name="chart_template_id" ref="kenyan_chart_template_standard"/>
+        </record>
+
+        <record forcecreate="1" model="account.account.template" id="p111010">
+            <field name="name">Account Payable</field>
+            <field name="code">111010</field>
+            <field name="user_type_id" ref="account.data_account_type_payable"/>
+            <field name="reconcile" eval="True"/>
+            <field name="chart_template_id" ref="kenyan_chart_template_standard"/>
+        </record>
+
+        <record forcecreate="1" model="account.account.template" id="p111200">
+            <field name="name">VAT Control</field>
+            <field name="code">111200</field>
+            <field name="user_type_id" ref="account.data_account_type_current_liabilities"/>
+            <field name="reconcile" eval="False"/>
+            <field name="chart_template_id" ref="kenyan_chart_template_standard"/>
+        </record>
+
+        <record forcecreate="1" model="account.account.template" id="p111300">
+            <field name="name">Reserve and Surplus Account</field>
+            <field name="code">111300</field>
+            <field name="user_type_id" ref="account.data_account_type_current_liabilities"/>
+            <field name="reconcile" eval="True"/>
+            <field name="chart_template_id" ref="kenyan_chart_template_standard"/>
+        </record>
+
+        <record forcecreate="1" model="account.account.template" id="p111220">
+            <field name="name">Related Party</field>
+            <field name="code">111220</field>
+            <field name="user_type_id" ref="account.data_account_type_current_liabilities"/>
+            <field name="reconcile" eval="False"/>
+            <field name="chart_template_id" ref="kenyan_chart_template_standard"/>
+        </record>
+
+        <record forcecreate="1" model="account.account.template" id="p111240">
+            <field name="name">Deferred Tax Liability</field>
+            <field name="code">111240</field>
+            <field name="user_type_id" ref="account.data_account_type_current_liabilities"/>
+            <field name="reconcile" eval="False"/>
+            <field name="chart_template_id" ref="kenyan_chart_template_standard"/>
+        </record>
+
+        <record forcecreate="1" model="account.account.template" id="p112000">
+            <field name="name">Non-current Liabilities</field>
+            <field name="code">112000</field>
+            <field name="user_type_id" ref="account.data_account_type_non_current_liabilities"/>
+            <field name="reconcile" eval="False"/>
+            <field name="chart_template_id" ref="kenyan_chart_template_standard"/>
+        </record>
+
+        <record forcecreate="1" model="account.account.template" id="p112010">
+            <field name="name">Post Employment Benefit Obligation</field>
+            <field name="code">112010</field>
+            <field name="user_type_id" ref="account.data_account_type_non_current_liabilities"/>
+            <field name="reconcile" eval="False"/>
+            <field name="chart_template_id" ref="kenyan_chart_template_standard"/>
+        </record>
+
+        <record forcecreate="1" model="account.account.template" id="p112020">
+            <field name="name">Directors Loan</field>
+            <field name="code">112020</field>
+            <field name="user_type_id" ref="account.data_account_type_non_current_liabilities"/>
+            <field name="reconcile" eval="False"/>
+            <field name="chart_template_id" ref="kenyan_chart_template_standard"/>
+        </record>
+
+        <record forcecreate="1" model="account.account.template" id="p200000">
+            <field name="name">Product Sales</field>
+            <field name="code">200000</field>
+            <field name="user_type_id" ref="account.data_account_type_revenue"/>
+            <field name="reconcile" eval="False"/>
+            <field name="chart_template_id" ref="kenyan_chart_template_standard"/>
+            <field name="tag_ids" eval="[(6,0,[ref('kenya_account_tag_operating')])]"/>
+        </record>
+
+        <record forcecreate="1" model="account.account.template" id="p201000">
+            <field name="name">Foreign Exchange Gain</field>
+            <field name="code">201000</field>
+            <field name="user_type_id" ref="account.data_account_type_revenue"/>
+            <field name="reconcile" eval="False"/>
+            <field name="chart_template_id" ref="kenyan_chart_template_standard"/>
+            <field name="tag_ids" eval="[(6,0,[ref('kenya_account_tag_financing')])]"/>
+        </record>
+
+        <record forcecreate="1" model="account.account.template" id="p210000">
+            <field name="name">Cost of Revenue</field>
+            <field name="code">210000</field>
+            <field name="user_type_id" ref="account.data_account_type_expenses"/>
+            <field name="reconcile" eval="False"/>
+            <field name="chart_template_id" ref="kenyan_chart_template_standard"/>
+            <field name="tag_ids" eval="[(6,0,[ref('kenya_account_tag_operating')])]"/>
+        </record>
+
+        <record forcecreate="1" model="account.account.template" id="p220000">
+            <field name="name">Expenses</field>
+            <field name="code">220000</field>
+            <field name="user_type_id" ref="account.data_account_type_expenses"/>
+            <field name="reconcile" eval="False"/>
+            <field name="chart_template_id" ref="kenyan_chart_template_standard"/>
+            <field name="tag_ids" eval="[(6,0,[ref('kenya_account_tag_operating')])]"/>
+        </record>
+
+        <record forcecreate="1" model="account.account.template" id="p300100">
+            <field name="name">Share Capital</field>
+            <field name="code">300100</field>
+            <field name="user_type_id" ref="account.data_account_type_equity"/>
+            <field name="reconcile" eval="False"/>
+            <field name="chart_template_id" ref="kenyan_chart_template_standard"/>
+        </record>
+
+        <record forcecreate="1" model="account.account.template" id="p300200">
+            <field name="name">Dividends</field>
+            <field name="code">300200</field>
+            <field name="user_type_id" ref="account.data_account_type_equity"/>
+            <field name="reconcile" eval="False"/>
+            <field name="chart_template_id" ref="kenyan_chart_template_standard"/>
+        </record>
+
+        <record forcecreate="1" model="account.account.template" id="p300300">
+            <field name="name">Revaluation Reserves</field>
+            <field name="code">300300</field>
+            <field name="user_type_id" ref="account.data_account_type_equity"/>
+            <field name="reconcile" eval="False"/>
+            <field name="chart_template_id" ref="kenyan_chart_template_standard"/>
+        </record>
+
+        <record forcecreate="1" model="account.account.template" id="p300400">
+            <field name="name">Reserves</field>
+            <field name="code">300400</field>
+            <field name="user_type_id" ref="account.data_account_type_equity"/>
+            <field name="reconcile" eval="False"/>
+            <field name="chart_template_id" ref="kenyan_chart_template_standard"/>
+        </record>
+
+        <record forcecreate="1" model="account.account.template" id="p800000">
+            <field name="name">Marketing</field>
+            <field name="code">800000</field>
+            <field name="user_type_id" ref="account.data_account_type_expenses"/>
+            <field name="reconcile" eval="False"/>
+            <field name="chart_template_id" ref="kenyan_chart_template_standard"/>
+            <field name="tag_ids" eval="[(6,0,[ref('kenya_account_tag_operating')])]"/>
+        </record>
+
+        <record forcecreate="1" model="account.account.template" id="p800001">
+            <field name="name">Repairs and Maintenance</field>
+            <field name="code">800001</field>
+            <field name="user_type_id" ref="account.data_account_type_expenses"/>
+            <field name="reconcile" eval="False"/>
+            <field name="chart_template_id" ref="kenyan_chart_template_standard"/>
+            <field name="tag_ids" eval="[(6,0,[ref('kenya_account_tag_operating')])]"/>
+        </record>
+
+        <record forcecreate="1" model="account.account.template" id="p800002">
+            <field name="name">Utilities</field>
+            <field name="code">800002</field>
+            <field name="user_type_id" ref="account.data_account_type_expenses"/>
+            <field name="reconcile" eval="False"/>
+            <field name="chart_template_id" ref="kenyan_chart_template_standard"/>
+            <field name="tag_ids" eval="[(6,0,[ref('kenya_account_tag_operating')])]"/>
+        </record>
+
+        <record forcecreate="1" model="account.account.template" id="p800003">
+            <field name="name">Insurance</field>
+            <field name="code">800003</field>
+            <field name="user_type_id" ref="account.data_account_type_expenses"/>
+            <field name="reconcile" eval="False"/>
+            <field name="chart_template_id" ref="kenyan_chart_template_standard"/>
+            <field name="tag_ids" eval="[(6,0,[ref('kenya_account_tag_operating')])]"/>
+        </record>
+
+        <record forcecreate="1" model="account.account.template" id="p800005">
+            <field name="name">Travel and Entertainment</field>
+            <field name="code">800005</field>
+            <field name="user_type_id" ref="account.data_account_type_expenses"/>
+            <field name="reconcile" eval="False"/>
+            <field name="chart_template_id" ref="kenyan_chart_template_standard"/>
+            <field name="tag_ids" eval="[(6,0,[ref('kenya_account_tag_operating')])]"/>
+        </record>
+
+        <record forcecreate="1" model="account.account.template" id="p800006">
+            <field name="name">Motor Vehicle Expenses</field>
+            <field name="code">800006</field>
+            <field name="user_type_id" ref="account.data_account_type_expenses"/>
+            <field name="reconcile" eval="False"/>
+            <field name="chart_template_id" ref="kenyan_chart_template_standard"/>
+            <field name="tag_ids" eval="[(6,0,[ref('kenya_account_tag_operating')])]"/>
+        </record>
+
+        <record forcecreate="1" model="account.account.template" id="p800007">
+            <field name="name">Legal and Professional</field>
+            <field name="code">800007</field>
+            <field name="user_type_id" ref="account.data_account_type_expenses"/>
+            <field name="reconcile" eval="False"/>
+            <field name="chart_template_id" ref="kenyan_chart_template_standard"/>
+            <field name="tag_ids" eval="[(6,0,[ref('kenya_account_tag_operating')])]"/>
+        </record>
+
+        <record forcecreate="1" model="account.account.template" id="p800008">
+            <field name="name">Audit Fees</field>
+            <field name="code">800008</field>
+            <field name="user_type_id" ref="account.data_account_type_expenses"/>
+            <field name="reconcile" eval="False"/>
+            <field name="chart_template_id" ref="kenyan_chart_template_standard"/>
+            <field name="tag_ids" eval="[(6,0,[ref('kenya_account_tag_operating')])]"/>
+        </record>
+
+        <record forcecreate="1" model="account.account.template" id="p800009">
+            <field name="name">Printing and Stationery</field>
+            <field name="code">800009</field>
+            <field name="user_type_id" ref="account.data_account_type_expenses"/>
+            <field name="reconcile" eval="False"/>
+            <field name="chart_template_id" ref="kenyan_chart_template_standard"/>
+            <field name="tag_ids" eval="[(6,0,[ref('kenya_account_tag_operating')])]"/>
+        </record>
+
+        <record forcecreate="1" model="account.account.template" id="p800010">
+            <field name="name">Training</field>
+            <field name="code">800010</field>
+            <field name="user_type_id" ref="account.data_account_type_expenses"/>
+            <field name="reconcile" eval="False"/>
+            <field name="chart_template_id" ref="kenyan_chart_template_standard"/>
+            <field name="tag_ids" eval="[(6,0,[ref('kenya_account_tag_operating')])]"/>
+        </record>
+
+        <record forcecreate="1" model="account.account.template" id="p800011">
+            <field name="name">Penalties and Fines</field>
+            <field name="code">800011</field>
+            <field name="user_type_id" ref="account.data_account_type_expenses"/>
+            <field name="reconcile" eval="False"/>
+            <field name="chart_template_id" ref="kenyan_chart_template_standard"/>
+            <field name="tag_ids" eval="[(6,0,[ref('kenya_account_tag_operating')])]"/>
+        </record>
+
+        <record forcecreate="1" model="account.account.template" id="p800012">
+            <field name="name">Licenses and Permits</field>
+            <field name="code">800012</field>
+            <field name="user_type_id" ref="account.data_account_type_expenses"/>
+            <field name="reconcile" eval="False"/>
+            <field name="chart_template_id" ref="kenyan_chart_template_standard"/>
+            <field name="tag_ids" eval="[(6,0,[ref('kenya_account_tag_operating')])]"/>
+        </record>
+
+        <record forcecreate="1" model="account.account.template" id="p800013">
+            <field name="name">Computer and Software Expenses</field>
+            <field name="code">800013</field>
+            <field name="user_type_id" ref="account.data_account_type_expenses"/>
+            <field name="reconcile" eval="False"/>
+            <field name="chart_template_id" ref="kenyan_chart_template_standard"/>
+            <field name="tag_ids" eval="[(6,0,[ref('kenya_account_tag_operating')])]"/>
+        </record>
+
+        <record forcecreate="1" model="account.account.template" id="p800014">
+            <field name="name">Subscriptions and Dues</field>
+            <field name="code">800014</field>
+            <field name="user_type_id" ref="account.data_account_type_expenses"/>
+            <field name="reconcile" eval="False"/>
+            <field name="chart_template_id" ref="kenyan_chart_template_standard"/>
+            <field name="tag_ids" eval="[(6,0,[ref('kenya_account_tag_operating')])]"/>
+        </record>
+
+        <record forcecreate="1" model="account.account.template" id="p800015">
+            <field name="name">Security</field>
+            <field name="code">800015</field>
+            <field name="user_type_id" ref="account.data_account_type_expenses"/>
+            <field name="reconcile" eval="False"/>
+            <field name="chart_template_id" ref="kenyan_chart_template_standard"/>
+            <field name="tag_ids" eval="[(6,0,[ref('kenya_account_tag_operating')])]"/>
+        </record>
+
+        <record forcecreate="1" model="account.account.template" id="p800016">
+            <field name="name">Staff Expenses</field>
+            <field name="code">800016</field>
+            <field name="user_type_id" ref="account.data_account_type_expenses"/>
+            <field name="reconcile" eval="False"/>
+            <field name="chart_template_id" ref="kenyan_chart_template_standard"/>
+            <field name="tag_ids" eval="[(6,0,[ref('kenya_account_tag_operating')])]"/>
+        </record>
+
+        <record forcecreate="1" model="account.account.template" id="p800017">
+            <field name="name">Donations</field>
+            <field name="code">800017</field>
+            <field name="user_type_id" ref="account.data_account_type_expenses"/>
+            <field name="reconcile" eval="False"/>
+            <field name="chart_template_id" ref="kenyan_chart_template_standard"/>
+            <field name="tag_ids" eval="[(6,0,[ref('kenya_account_tag_operating')])]"/>
+        </record>
+
+        <record forcecreate="1" model="account.account.template" id="p800018">
+            <field name="name">General Expenses</field>
+            <field name="code">800018</field>
+            <field name="user_type_id" ref="account.data_account_type_expenses"/>
+            <field name="reconcile" eval="False"/>
+            <field name="chart_template_id" ref="kenyan_chart_template_standard"/>
+            <field name="tag_ids" eval="[(6,0,[ref('kenya_account_tag_operating')])]"/>
+        </record>
+
+        <record forcecreate="1" model="account.account.template" id="p800019">
+            <field name="name">Environment, Health and Safety</field>
+            <field name="code">800019</field>
+            <field name="user_type_id" ref="account.data_account_type_expenses"/>
+            <field name="reconcile" eval="False"/>
+            <field name="chart_template_id" ref="kenyan_chart_template_standard"/>
+            <field name="tag_ids" eval="[(6,0,[ref('kenya_account_tag_operating')])]"/>
+        </record>
+
+        <record forcecreate="1" model="account.account.template" id="p800020">
+            <field name="name">Service Charges</field>
+            <field name="code">800020</field>
+            <field name="user_type_id" ref="account.data_account_type_expenses"/>
+            <field name="reconcile" eval="False"/>
+            <field name="chart_template_id" ref="kenyan_chart_template_standard"/>
+            <field name="tag_ids" eval="[(6,0,[ref('kenya_account_tag_operating')])]"/>
+        </record>
+
+        <record forcecreate="1" model="account.account.template" id="p800021">
+            <field name="name">Deprecation</field>
+            <field name="code">800021</field>
+            <field name="user_type_id" ref="account.data_account_type_expenses"/>
+            <field name="reconcile" eval="False"/>
+            <field name="chart_template_id" ref="kenyan_chart_template_standard"/>
+            <field name="tag_ids" eval="[(6,0,[ref('kenya_account_tag_operating')])]"/>
+        </record>
+
+        <record forcecreate="1" model="account.account.template" id="p800022">
+            <field name="name">Suspense</field>
+            <field name="code">800022</field>
+            <field name="user_type_id" ref="account.data_account_type_expenses"/>
+            <field name="reconcile" eval="False"/>
+            <field name="chart_template_id" ref="kenyan_chart_template_standard"/>
+            <field name="tag_ids" eval="[(6,0,[ref('kenya_account_tag_operating')])]"/>
+        </record>
+
+        <record forcecreate="1" model="account.account.template" id="p820000">
+            <field name="name">Salaries and Wages</field>
+            <field name="code">820000</field>
+            <field name="user_type_id" ref="account.data_account_type_expenses"/>
+            <field name="reconcile" eval="False"/>
+            <field name="chart_template_id" ref="kenyan_chart_template_standard"/>
+        </record>
+
+        <record forcecreate="1" model="account.account.template" id="p820001">
+            <field name="name">Redundancy Payments</field>
+            <field name="code">820001</field>
+            <field name="user_type_id" ref="account.data_account_type_expenses"/>
+            <field name="reconcile" eval="False"/>
+            <field name="chart_template_id" ref="kenyan_chart_template_standard"/>
+        </record>
+
+        <record forcecreate="1" model="account.account.template" id="p820002">
+            <field name="name">Casual Wages</field>
+            <field name="code">820002</field>
+            <field name="user_type_id" ref="account.data_account_type_expenses"/>
+            <field name="reconcile" eval="False"/>
+            <field name="chart_template_id" ref="kenyan_chart_template_standard"/>
+        </record>
+
+        <record forcecreate="1" model="account.account.template" id="p820003">
+            <field name="name">Directors Salaries</field>
+            <field name="code">820003</field>
+            <field name="user_type_id" ref="account.data_account_type_expenses"/>
+            <field name="reconcile" eval="False"/>
+            <field name="chart_template_id" ref="kenyan_chart_template_standard"/>
+        </record>
+
+        <record forcecreate="1" model="account.account.template" id="p820004">
+            <field name="name">Directors Bonus</field>
+            <field name="code">820004</field>
+            <field name="user_type_id" ref="account.data_account_type_expenses"/>
+            <field name="reconcile" eval="False"/>
+            <field name="chart_template_id" ref="kenyan_chart_template_standard"/>
+        </record>
+
+        <record forcecreate="1" model="account.account.template" id="p820005">
+            <field name="name">Recruitment Expenses</field>
+            <field name="code">820005</field>
+            <field name="user_type_id" ref="account.data_account_type_expenses"/>
+            <field name="reconcile" eval="False"/>
+            <field name="chart_template_id" ref="kenyan_chart_template_standard"/>
+        </record>
+
+        <record forcecreate="1" model="account.account.template" id="p800004">
+            <field name="name">Property Expenses</field>
+            <field name="code">800004</field>
+            <field name="user_type_id" ref="account.data_account_type_expenses"/>
+            <field name="reconcile" eval="False"/>
+            <field name="chart_template_id" ref="kenyan_chart_template_standard"/>
+        </record>
+
+        <record forcecreate="1" model="account.account.template" id="p820007">
+            <field name="name">PAYE</field>
+            <field name="code">820007</field>
+            <field name="user_type_id" ref="account.data_account_type_expenses"/>
+            <field name="reconcile" eval="False"/>
+            <field name="chart_template_id" ref="kenyan_chart_template_standard"/>
+        </record>
+
+        <record forcecreate="1" model="account.account.template" id="p820008">
+            <field name="name">NSSF</field>
+            <field name="code">820008</field>
+            <field name="user_type_id" ref="account.data_account_type_expenses"/>
+            <field name="reconcile" eval="False"/>
+            <field name="chart_template_id" ref="kenyan_chart_template_standard"/>
+        </record>
+
+        <record forcecreate="1" model="account.account.template" id="p820009">
+            <field name="name">NHIF</field>
+            <field name="code">820009</field>
+            <field name="user_type_id" ref="account.data_account_type_expenses"/>
+            <field name="reconcile" eval="False"/>
+            <field name="chart_template_id" ref="kenyan_chart_template_standard"/>
+        </record>
+
+        <record forcecreate="1" model="account.account.template" id="p820006">
+            <field name="name">Management and Incentives</field>
+            <field name="code">820006</field>
+            <field name="user_type_id" ref="account.data_account_type_expenses"/>
+            <field name="reconcile" eval="False"/>
+            <field name="chart_template_id" ref="kenyan_chart_template_standard"/>
+        </record>
+
+        <record forcecreate="1" model="account.account.template" id="p820007">
+            <field name="name">Retirement Benefits</field>
+            <field name="code">820007</field>
+            <field name="user_type_id" ref="account.data_account_type_expenses"/>
+            <field name="reconcile" eval="False"/>
+            <field name="chart_template_id" ref="kenyan_chart_template_standard"/>
+        </record>
+
+        <record forcecreate="1" model="account.account.template" id="p830000">
+            <field name="name">Bank Charges</field>
+            <field name="code">830000</field>
+            <field name="user_type_id" ref="account.data_account_type_expenses"/>
+            <field name="reconcile" eval="False"/>
+            <field name="chart_template_id" ref="kenyan_chart_template_standard"/>
+            <field name="tag_ids" eval="[(6,0,[ref('kenya_account_tag_financing')])]"/>
+        </record>
+
+        <record forcecreate="1" model="account.account.template" id="p830001">
+            <field name="name">Bank Overdraft Interest</field>
+            <field name="code">830001</field>
+            <field name="user_type_id" ref="account.data_account_type_expenses"/>
+            <field name="reconcile" eval="False"/>
+            <field name="chart_template_id" ref="kenyan_chart_template_standard"/>
+            <field name="tag_ids" eval="[(6,0,[ref('kenya_account_tag_financing')])]"/>
+        </record>
+
+        <record forcecreate="1" model="account.account.template" id="p830002">
+            <field name="name">Unrealised Foreign Exchange Loss</field>
+            <field name="code">830002</field>
+            <field name="user_type_id" ref="account.data_account_type_expenses"/>
+            <field name="reconcile" eval="False"/>
+            <field name="chart_template_id" ref="kenyan_chart_template_standard"/>
+            <field name="tag_ids" eval="[(6,0,[ref('kenya_account_tag_financing')])]"/>
+        </record>
+
+        <record forcecreate="1" model="account.account.template" id="p830003">
+            <field name="name">Realised Foreign Exchange</field>
+            <field name="code">830003</field>
+            <field name="user_type_id" ref="account.data_account_type_expenses"/>
+            <field name="reconcile" eval="False"/>
+            <field name="chart_template_id" ref="kenyan_chart_template_standard"/>
+            <field name="tag_ids" eval="[(6,0,[ref('kenya_account_tag_financing')])]"/>
+        </record>
+
+        <record forcecreate="1" model="account.account.template" id="p830004">
+            <field name="name">Hire Purchase Interest</field>
+            <field name="code">830004</field>
+            <field name="user_type_id" ref="account.data_account_type_expenses"/>
+            <field name="reconcile" eval="False"/>
+            <field name="chart_template_id" ref="kenyan_chart_template_standard"/>
+            <field name="tag_ids" eval="[(6,0,[ref('kenya_account_tag_financing')])]"/>
+        </record>
+
+        <record forcecreate="1" model="account.account.template" id="p830005">
+            <field name="name">Loan Interest</field>
+            <field name="code">830005</field>
+            <field name="user_type_id" ref="account.data_account_type_expenses"/>
+            <field name="reconcile" eval="False"/>
+            <field name="chart_template_id" ref="kenyan_chart_template_standard"/>
+            <field name="tag_ids" eval="[(6,0,[ref('kenya_account_tag_financing')])]"/>
+        </record>
+
+        <!-- Account Chart Template-->
+    <record id="kenyan_chart_template_standard" model="account.chart.template">
+      <field name="property_account_receivable_id" ref="p101200"/>
+      <field name="property_account_payable_id" ref="p111010"/>
+      <field name="property_account_expense_categ_id" ref="p220000"/>
+      <!--p200000-->
+      <field name="property_account_income_categ_id" ref="p200000"/>
+      <!--p220000-->
+    </record>
+
+    </data>
+</odoo>

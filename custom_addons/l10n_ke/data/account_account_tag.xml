@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data noupdate="1">
+        <record id="kenya_account_tag_operating" model="account.account.tag">
+            <field name="name">Operating</field>
+            <field name="applicability">accounts</field>
+        </record>
+
+        <record id="kenya_account_tag_financing" model="account.account.tag">
+            <field name="name">Financing</field>
+            <field name="applicability">accounts</field>
+        </record>
+    </data>
+</odoo>
